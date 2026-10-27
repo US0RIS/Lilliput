@@ -1,0 +1,90 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          latest=$(ls -d /Applications/Xcode_16*.app 2>/dev/null | sort -V | tail -1)
+          if [ -n "$latest" ]; then sudo xcode-select -s "$latest"; fi
+          xcodebuild -version
+          swift --version
+
+      - name: Build and test (Debug)
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          TEST_RUNNER_LILLIPUT_ART_OUT="$PWD/artifacts/art-contact-sheet.png" \
+          xcodebuild -project Lilliput.xcodeproj -scheme Lilliput -configuration Debug \
+            -derivedDataPath build -destination 'platform=macOS' \
+            CODE_SIGN_IDENTITY=- test 2>&1 | tee artifacts/test.log | grep -E "error:|warning: .*(isolat|Sendable)|Test Case .* (passed|failed)|Executed|BUILD|TEST" || true
+          grep -q "TEST SUCCEEDED" artifacts/test.log
+
+      - name: Build Release (universal)
+        run: |
+          set -o pipefail
+          xcodebuild -project Lilliput.xcodeproj -scheme Lilliput -configuration Release \
+            -derivedDataPath build ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGN_IDENTITY=- build 2>&1 | tee artifacts/release.log | grep -E "error:|BUILD" || true
+          grep -q "BUILD SUCCEEDED" artifacts/release.log
+          APP=build/Build/Products/Release/Lilliput.app
+          codesign --force --deep --sign - "$APP"
+          codesign --verify --verbose "$APP"
+          lipo -info "$APP/Contents/MacOS/Lilliput"
+          /usr/libexec/PlistBuddy -c "Print :LSUIElement" "$APP/Contents/Info.plist"
+          /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$APP/Contents/Info.plist"
+          ditto -c -k --keepParent "$APP" artifacts/Lilliput.zip
+          du -sh "$APP" artifacts/Lilliput.zip
+
+      - name: Smoke-launch the app
+        run: |
+          APP=build/Build/Products/Release/Lilliput.app
+          "$APP/Contents/MacOS/Lilliput" --demo > artifacts/launch.log 2>&1 &
+          PID=$!
+          for i in 1 2 3 4; do
+            sleep 4
+            screencapture -x "artifacts/demo-$i.png" || true
+          done
+          sleep 4
+          if kill -0 $PID 2>/dev/null; then
+            echo "Lilliput still running after ~20s (pid $PID) — no crash at launch."
+            ps -o pid,rss,%cpu,command -p $PID
+            screencapture -x artifacts/demo-5.png || true
+            sleep 20
+            echo "after 40s:"; ps -o pid,rss,%cpu,command -p $PID
+            kill $PID
+          else
+            echo "Lilliput exited early"; cat artifacts/launch.log; exit 1
+          fi
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lilliput-build
+          path: artifacts/
+          if-no-files-found: warn
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" artifacts/Lilliput.zip \
+            --title "Lilliput ${GITHUB_REF_NAME}" \
+            --notes "Universal (Apple silicon + Intel), ad-hoc signed. See README for first-launch and Accessibility instructions." \
+            || gh release upload "${GITHUB_REF_NAME}" artifacts/Lilliput.zip --clobber

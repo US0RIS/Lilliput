@@ -1,0 +1,22 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+.build/
+# Signing / secrets
+*.p12
+*.cer
+*.mobileprovision
+*.provisionprofile
+.env
+# Local output
+dist/
+artifacts/
+.DS_Store

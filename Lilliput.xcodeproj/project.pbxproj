@@ -1,0 +1,364 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		EA48666EEC4BE6835411A27E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1781F676DEDF5767F3243DB0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 147982BEBBBCF1EA792C8730;
+			remoteInfo = Lilliput;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5141EFFF35ACD6C51F274E4D /* Lilliput.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lilliput.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68D128FAC7073081D8355714 /* LilliputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LilliputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		3DFE442710E429386E53D077 /* Lilliput */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Lilliput;
+			sourceTree = "<group>";
+		};
+		CEC4290FD49D87B0F83D52CD /* LilliputTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LilliputTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5CED10CA8335FBF5C2F262D5 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC51286CCF903911EFA27E6B = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A85897F1A32FE9B91C081CD = {
+			isa = PBXGroup;
+			children = (
+				3DFE442710E429386E53D077 /* Lilliput */,
+				CEC4290FD49D87B0F83D52CD /* LilliputTests */,
+				B88D7E26791946AEFDCC8BB7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B88D7E26791946AEFDCC8BB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5141EFFF35ACD6C51F274E4D /* Lilliput.app */,
+				68D128FAC7073081D8355714 /* LilliputTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		147982BEBBBCF1EA792C8730 /* Lilliput */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B42CCE1C089454B0952E498A /* Build configuration list for PBXNativeTarget "Lilliput" */;
+			buildPhases = (
+				C8E861EA493B65F76FEADB32 /* Sources */,
+				5CED10CA8335FBF5C2F262D5 /* Frameworks */,
+				71D5C8DD194F113FA882DF73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				3DFE442710E429386E53D077 /* Lilliput */,
+			);
+			name = Lilliput;
+			packageProductDependencies = (
+			);
+			productName = Lilliput;
+			productReference = 5141EFFF35ACD6C51F274E4D /* Lilliput.app */;
+			productType = "com.apple.product-type.application";
+		};
+		208C54D1C19CFF7994A925A1 /* LilliputTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 426858C98D729FFA048AA963 /* Build configuration list for PBXNativeTarget "LilliputTests" */;
+			buildPhases = (
+				AD3D863858E44A74350712C1 /* Sources */,
+				EC51286CCF903911EFA27E6B /* Frameworks */,
+				39E1A3B9DCD3E764600829BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				948D90978E3E9713CED5C5B0 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CEC4290FD49D87B0F83D52CD /* LilliputTests */,
+			);
+			name = LilliputTests;
+			packageProductDependencies = (
+			);
+			productName = LilliputTests;
+			productReference = 68D128FAC7073081D8355714 /* LilliputTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1781F676DEDF5767F3243DB0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					147982BEBBBCF1EA792C8730 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					208C54D1C19CFF7994A925A1 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 147982BEBBBCF1EA792C8730;
+					};
+				};
+			};
+			buildConfigurationList = 9D9F3DD0CE1139C716A107A9 /* Build configuration list for PBXProject "Lilliput" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0A85897F1A32FE9B91C081CD;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B88D7E26791946AEFDCC8BB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				147982BEBBBCF1EA792C8730 /* Lilliput */,
+				208C54D1C19CFF7994A925A1 /* LilliputTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		71D5C8DD194F113FA882DF73 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39E1A3B9DCD3E764600829BB = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C8E861EA493B65F76FEADB32 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD3D863858E44A74350712C1 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		948D90978E3E9713CED5C5B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 147982BEBBBCF1EA792C8730 /* Lilliput */;
+			targetProxy = EA48666EEC4BE6835411A27E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		720053A8D23AE1812A418094 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		935AC6FFCB996012ECD3A455 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		6FD51FE8A48050B44AFCCF21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Lilliput;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Lilliput. Runs entirely on your Mac.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.us0ris.lilliput;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		B2F784F5305FC92A81050698 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Lilliput;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Lilliput. Runs entirely on your Mac.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.us0ris.lilliput;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		4F1805E2FEC17D315B8F5CF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.us0ris.lilliput.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lilliput.app/Contents/MacOS/Lilliput";
+			};
+			name = Debug;
+		};
+		68D252F1D9E55DEBB9712E88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.us0ris.lilliput.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lilliput.app/Contents/MacOS/Lilliput";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9D9F3DD0CE1139C716A107A9 /* Build configuration list for PBXProject "Lilliput" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				720053A8D23AE1812A418094 /* Debug */,
+				935AC6FFCB996012ECD3A455 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B42CCE1C089454B0952E498A /* Build configuration list for PBXNativeTarget "Lilliput" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FD51FE8A48050B44AFCCF21 /* Debug */,
+				B2F784F5305FC92A81050698 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		426858C98D729FFA048AA963 /* Build configuration list for PBXNativeTarget "LilliputTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F1805E2FEC17D315B8F5CF3 /* Debug */,
+				68D252F1D9E55DEBB9712E88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1781F676DEDF5767F3243DB0 /* Project object */;
+}
