@@ -537,9 +537,35 @@ final class ConstructionSite: WorkerContext {
             n.isHidden = h
             if !h { anyVisible = true }
         }
+        // Things that hang off a tower disappear with the tower section that holds them,
+        // so nothing floats in mid-air next to a window in front.
+        func towerHidden(side: Int, level: Int) -> Bool {
+            elementNodes[ElementKey(kind: .tower, side: side, index: level)]?.isHidden ?? false
+        }
+        for (key, n) in elementNodes where !n.isHidden {
+            switch key.kind {
+            case .ladder:
+                if towerHidden(side: key.side, level: key.index) { n.isHidden = true }
+            case .crane, .pulley:
+                if let side = TowerSide(rawValue: key.side), let t = layout?.tower(side), towerHidden(side: key.side, level: t.levels) {
+                    n.isHidden = true
+                }
+            default:
+                break
+            }
+        }
         for w in workers {
-            w.node.isHidden = hidden(CGPoint(x: w.pos.x, y: w.pos.y + 6))
-            if w.node.isHidden { w.emoteNode.isHidden = true }
+            var h = hidden(CGPoint(x: w.pos.x, y: w.pos.y + 6))
+            if !h, w.surface != Surface.deckID {
+                h = towerHidden(side: w.surface / 100, level: w.surface % 100)
+            }
+            if !h, w.surface == Surface.deckID, w.node.alpha > 0.5, let L = layout,
+               let bay = L.bayIndex(containing: Int(w.pos.x)),
+               let n = elementNodes[ElementKey(kind: .bay, side: 0, index: bay)], n.buildState == .built {
+                h = n.isHidden
+            }
+            w.node.isHidden = h
+            if h { w.emoteNode.isHidden = true }
         }
         for p in allProps { p.node.isHidden = hidden(CGPoint(x: p.base.x, y: p.base.y + 2)) }
         structureVisible = anyVisible
