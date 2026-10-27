@@ -20,14 +20,25 @@ enum Occlusion {
         var result: [WindowID: OcclusionInfo] = [:]
         for (index, entry) in frontToBack.enumerated() where targets.contains(entry.id) {
             let area = entry.frame.insetBy(dx: -siteMargin, dy: -siteMargin)
+            var raw: [CGRect] = []
             var occluders: [CGRect] = []
-            for front in frontToBack[..<index] where front.frame.intersects(area) {
-                occluders.append(front.frame)
+            for front in frontToBack[..<index] {
+                // A front window also "owns" the strip below and beside it where its own
+                // crew works; anything of ours there would just pile up behind its deck.
+                let claimed = claimedArea(of: front.frame)
+                guard claimed.intersects(area) else { continue }
+                raw.append(front.frame)
+                occluders.append(targets.contains(front.id) ? claimed : front.frame)
             }
-            let fraction = occluders.isEmpty ? 1 : visibleFraction(of: entry.frame, occluders: occluders)
+            let fraction = raw.isEmpty ? 1 : visibleFraction(of: entry.frame, occluders: raw)
             result[entry.id] = OcclusionInfo(occluders: occluders, visibleFraction: fraction)
         }
         return result
+    }
+
+    /// The window plus the margin its own scaffolding occupies (deck truss below, towers beside).
+    static func claimedArea(of frame: CGRect) -> CGRect {
+        CGRect(x: frame.minX - 26, y: frame.minY - 20, width: frame.width + 52, height: frame.height + 20)
     }
 
     /// Samples points along the bottom edge and lower sides — where the crew works.

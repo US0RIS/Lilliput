@@ -89,6 +89,10 @@ final class DemoWindowController: NSWindowController, NSWindowDelegate {
         controller.start()
     }
 
+    func setAutoplay(_ on: Bool) {
+        controller.autoplay = on
+    }
+
     func shutdown() {
         NotificationCenter.default.removeObserver(self)
         controller.shutdown()

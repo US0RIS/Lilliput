@@ -34,8 +34,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         settings.hasSeenOnboarding = true
 
-        if ProcessInfo.processInfo.arguments.contains("--demo") {
+        let args = ProcessInfo.processInfo.arguments
+        if args.contains("--demo") || args.contains("--demo-autoplay") {
             showDemo()
+            if args.contains("--demo-autoplay") { demoWindow?.setAutoplay(true) }
         }
     }
 

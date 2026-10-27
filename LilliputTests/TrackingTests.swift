@@ -119,6 +119,9 @@ final class GeometryTests: XCTestCase {
         XCTAssertEqual(info[2]?.occluders.count, 0)
         XCTAssertEqual(info[1]?.occluders.count, 1)
         XCTAssertLessThan(info[1]!.visibleFraction, 0.3)
+        // The strip just below a tracked front window belongs to its crew.
+        let deckBelowFront = CGPoint(x: front.midX, y: front.minY - 10)
+        XCTAssertTrue(info[1]!.occluders.contains { $0.contains(deckBelowFront) })
         let side = CGRect(x: 1000, y: 0, width: 300, height: 300)
         let clear = Occlusion.compute(frontToBack: [(3, side), (1, back)], targets: [1])
         XCTAssertEqual(clear[1]?.visibleFraction, 1)

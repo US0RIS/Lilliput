@@ -93,7 +93,6 @@ final class DemoController: ObservableObject {
     private var autoplayTimer: TimeInterval = 0
     private var rng = SplitMix64(seed: UInt64(Date().timeIntervalSince1970))
     private let background = SKSpriteNode(color: NSColor(srgbRed: 0.33, green: 0.47, blue: 0.56, alpha: 1), size: .zero)
-    private let backgroundGlow = SKSpriteNode(color: NSColor(srgbRed: 0.45, green: 0.60, blue: 0.66, alpha: 1), size: .zero)
     private var occlusionDirty = true
     private var started = false
     private var scheduled: [(TimeInterval, () -> Void)] = []
@@ -118,11 +117,7 @@ final class DemoController: ObservableObject {
         scene.apply(settings: settings)
         background.anchorPoint = .zero
         background.zPosition = -1000
-        backgroundGlow.anchorPoint = .zero
-        backgroundGlow.zPosition = -999
-        backgroundGlow.alpha = 0.35
         scene.addChild(background)
-        scene.addChild(backgroundGlow)
         scene.onFrame = { [weak self] dt in self?.frame(dt: dt) }
     }
 
@@ -311,8 +306,7 @@ final class DemoController: ObservableObject {
         clock += dt
         if background.size != scene.size {
             background.size = scene.size
-            backgroundGlow.size = CGSize(width: scene.size.width, height: scene.size.height * 0.45)
-            backgroundGlow.position = CGPoint(x: 0, y: scene.size.height * 0.55)
+            background.texture = Self.desktopGradient(height: Int(max(2, scene.size.height / 8)))
         }
         if !scheduled.isEmpty {
             let due = scheduled.filter { $0.0 <= clock }
@@ -370,6 +364,16 @@ final class DemoController: ObservableObject {
     private func publishCounts() {
         windowCount = windows.filter { !$0.closing }.count
         minimizedCount = windows.filter { $0.minimized && !$0.closing }.count
+    }
+
+    /// Soft vertical gradient (lighter at the top), like a plain desktop picture.
+    private static func desktopGradient(height: Int) -> SKTexture {
+        var c = PixelCanvas(width: 1, height: height)
+        let top = RGBA(0x6F93AE), bottom = RGBA(0x3F5B70)
+        for y in 0..<height { c.set(0, y, top.mixed(with: bottom, Double(y) / Double(max(1, height - 1)))) }
+        let t = TextureCache.texture(from: c)
+        t.filteringMode = .linear
+        return t
     }
 
     nonisolated private static func lerp(_ a: CGPoint, _ b: CGPoint, _ t: CGFloat) -> CGPoint {

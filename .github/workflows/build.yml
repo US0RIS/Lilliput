@@ -53,19 +53,19 @@ jobs:
       - name: Smoke-launch the app
         run: |
           APP=build/Build/Products/Release/Lilliput.app
-          "$APP/Contents/MacOS/Lilliput" --demo > artifacts/launch.log 2>&1 &
+          "$APP/Contents/MacOS/Lilliput" --demo-autoplay > artifacts/launch.log 2>&1 &
           PID=$!
-          for i in 1 2 3 4; do
+          for i in 1 2 3 4 5 6 7 8; do
             sleep 4
             screencapture -x "artifacts/demo-$i.png" || true
           done
           sleep 4
           if kill -0 $PID 2>/dev/null; then
-            echo "Lilliput still running after ~20s (pid $PID) — no crash at launch."
+            echo "Lilliput still running after ~36s (pid $PID) — no crash."
             ps -o pid,rss,%cpu,command -p $PID
-            screencapture -x artifacts/demo-5.png || true
-            sleep 20
-            echo "after 40s:"; ps -o pid,rss,%cpu,command -p $PID
+            sleep 30
+            screencapture -x artifacts/demo-final.png || true
+            echo "after ~65s of autoplay (moves, flings, resizes, minimize/restore, close, events):"; ps -o pid,rss,%cpu,command -p $PID
             kill $PID
           else
             echo "Lilliput exited early"; cat artifacts/launch.log; exit 1
