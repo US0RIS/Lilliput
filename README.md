@@ -10,7 +10,7 @@ Lilliput has no productivity purpose. It runs entirely on your Mac, makes no net
 
 1. Download `Lilliput.zip` from the `lilliput-build` artifact of the latest successful [Build workflow run](https://github.com/US0RIS/Lilliput/actions/workflows/build.yml) (sign in to GitHub; the artifact zip contains `Lilliput.zip`). Tagged versions (`v*`) are also published on the [Releases](https://github.com/US0RIS/Lilliput/releases) page.
 2. Unzip and move **Lilliput.app** to `/Applications`.
-3. The build is ad-hoc signed (no Apple Developer ID), so Gatekeeper blocks the first launch. Either right-click the app → **Open** → **Open**, or run:
+3. The build is ad-hoc signed (no Apple Developer ID), so Gatekeeper blocks the first launch. Double-click it once, dismiss the warning, then go to **System Settings → Privacy & Security**, scroll down, click **Open Anyway** next to the Lilliput message and confirm with your password. (On macOS 15 the old right-click → Open shortcut no longer bypasses this.) Or run:
    ```sh
    xattr -dr com.apple.quarantine /Applications/Lilliput.app
    ```
